@@ -18,7 +18,7 @@ const Home = () => {
           <h2 className="text-xl md:text-2xl text-violet-600 dark:text-violet-400 mb-6">
             Développeur Full Stack
           </h2>
-          
+
           <div className="flex flex-wrap items-center justify-center gap-4 text-gray-600 dark:text-gray-300 mb-8">
             <a href="tel:+221770643381" className="flex items-center gap-2 hover:text-violet-600">
               <Phone size={18} />
@@ -37,7 +37,7 @@ const Home = () => {
           <div className="flex justify-center gap-4">
             <motion.a
               whileHover={{ scale: 1.1 }}
-              href="https://https://github.com/MakhtarF1"
+              href="https://github.com/MakhtarF1"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100"
@@ -63,10 +63,7 @@ const Home = () => {
           className="max-w-3xl mx-auto text-center"
         >
           <p className="text-lg text-gray-600 dark:text-gray-300">
-            Développeur Full Stack passionné et expérimenté, spécialisé dans la création 
-            d'applications web et mobiles innovantes. Maîtrisant le développement frontend 
-            et backend, je mène des projets de bout en bout avec une approche axée sur la 
-            qualité et les bonnes pratiques.
+            Développeur Full Stack passionné et expérimenté, spécialisé dans la création d'applications web et mobiles innovantes. Maîtrisant le développement frontend et backend, je mène des projets de bout en bout avec une approche axée sur la qualité et les bonnes pratiques.
           </p>
         </motion.div>
       </div>

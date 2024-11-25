@@ -9,6 +9,8 @@ interface ProjectCardProps {
   imageUrl: string;
   liveUrl?: string;
   githubUrl?: string;
+  uiUxDescription?: string;
+  figmaLink?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -17,7 +19,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   technologies,
   imageUrl,
   liveUrl,
-  githubUrl
+  githubUrl,
+  uiUxDescription,
+  figmaLink
 }) => {
   return (
     <motion.div
@@ -33,28 +37,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           alt={title}
           className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white rounded-full hover:scale-110 transition-transform"
-            >
-              <ExternalLink size={20} className="text-gray-900" />
-            </a>
-          )}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white rounded-full hover:scale-110 transition-transform"
-            >
-              <Github size={20} className="text-gray-900" />
-            </a>
-          )}
-        </div>
+        {(liveUrl || githubUrl) && (
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white rounded-full hover:scale-110 transition-transform"
+              >
+                <ExternalLink size={20} className="text-gray-900" />
+              </a>
+            )}
+            {githubUrl && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white rounded-full hover:scale-110 transition-transform"
+              >
+                <Github size={20} className="text-gray-900" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="p-6">
@@ -64,16 +70,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           {description}
         </p>
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, index) => (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {technologies.map((tech) => (
             <span
-              key={index}
+              key={tech}
               className="px-3 py-1 bg-violet-100 dark:bg-violet-900 text-violet-600 dark:text-violet-300 text-sm rounded-full"
             >
               {tech}
             </span>
           ))}
         </div>
+
+        {uiUxDescription && (
+          <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <strong>UI/UX Design:</strong> {uiUxDescription}
+          </div>
+        )}
+
+        {figmaLink && (
+          <a
+            href={figmaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-600 hover:underline text-sm"
+          >
+            Voir le design Figma
+          </a>
+        )}
       </div>
     </motion.div>
   );

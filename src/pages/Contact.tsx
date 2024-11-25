@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,11 +9,31 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    
+    try {
+      // Replace these with your actual EmailJS credentials
+      const result = await emailjs.send(
+        'YOUR_SERVICE_ID', 
+        'YOUR_TEMPLATE_ID', 
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message
+        },
+        'YOUR_PUBLIC_KEY'
+      );
+
+      setStatus('Message envoyé avec succès!');
+      // Reset form after successful submission
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du message:', error);
+      setStatus('Échec de l\'envoi du message. Veuillez réessayer.');
+    }
   };
 
   const contactInfo = [
@@ -94,6 +115,11 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
                 Envoyez-moi un message
               </h2>
+              {status && (
+                <div className={`mb-4 p-3 rounded ${status.includes('succès') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                  {status}
+                </div>
+              )}
               <div className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
