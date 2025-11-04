@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ThemeToggle from './components/ThemeToggle';
@@ -10,12 +10,20 @@ import Contact from './pages/Contact';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   return (
     <Router>
-      <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+      <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
         <Navbar />
         <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-        
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

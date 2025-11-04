@@ -13,10 +13,11 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode }) => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       onClick={() => setDarkMode(!darkMode)}
-      className="fixed top-4 right-4 p-2 rounded-full bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 z-50"
+      className="fixed top-4 right-4 p-3 rounded-full bg-gradient-to-br from-blue-500 to-teal-600 text-white z-50 shadow-lg hover:shadow-xl transition-shadow"
     >
-      {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+      {darkMode ? <Sun size={20} /> : <Moon size={20} />}
     </motion.button>
   );
 };
